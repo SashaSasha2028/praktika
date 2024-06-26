@@ -1,0 +1,32 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Введите количество интервалов: ");
+        int n = scanner.nextInt();
+
+        int sum = 0;
+        for (int i = 0; i < n; i++) {
+            System.out.print("Введите начало интервала " + (i + 1) + ": ");
+            int start = scanner.nextInt();
+            System.out.print("Введите конец интервала " + (i + 1) + ": ");
+            int end = scanner.nextInt();
+
+            sum += getSumBetween(start, end);
+        }
+
+        System.out.println("Сумма количества всех чисел между указанными интервалами: " + sum);
+
+        scanner.close();
+    }
+
+    public static int getSumBetween(int start, int end) {
+        int sum = 0;
+        for (int i = start + 1; i < end; i++) {
+            sum++;
+        }
+        return sum;
+    }
+}
