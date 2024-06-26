@@ -1,0 +1,45 @@
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Введите отсортированный ряд чисел через пробел:");
+        String input = scanner.nextLine();
+
+        String[] numbers = input.split(" ");
+        List<String> ranges = new ArrayList<>();
+
+        int start = Integer.parseInt(numbers[0]);
+        int end = start;
+
+        for (int i = 1; i < numbers.length; i++) {
+            int current = Integer.parseInt(numbers[i]);
+            if (current == end + 1) {
+                end = current;
+            } else {
+                if (start == end){
+                    ranges.add(String.valueOf(start));
+                } else {
+                    ranges.add(start + "-" + end);
+                }
+                start = current;
+                end = current;
+            }
+        }
+
+        if (start == end){
+            ranges.add(String.valueOf(start));
+        } else {
+            ranges.add(start + "-" + end);
+        }
+
+        System.out.println("Диапазоны чисел:");
+        for (String range : ranges) {
+            System.out.println(range);
+        }
+    }
+}
