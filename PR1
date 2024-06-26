@@ -1,0 +1,46 @@
+import java.util.Scanner;
+import java.util.Arrays;
+
+public class NextGreaterNumber {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Введите целое положительное число: ");
+        int number = scanner.nextInt();
+        
+        int result = getNextGreaterNumber(number);
+        
+        if (result == -1) {
+            System.out.println("Невозможно получить следующее большее число с теми же цифрами");
+        } else {
+            System.out.println("Следующее большее число с теми же цифрами: " + result);
+        }
+    }
+    
+    public static int getNextGreaterNumber(int number) {
+        char[] digits = String.valueOf(number).toCharArray();
+        
+        int i = digits.length - 2;
+        while (i >= 0 && digits[i] >= digits[i + 1]) {
+            i--;
+        }
+        
+        if (i < 0) {
+            return -1;
+        }
+        
+        int j = digits.length - 1;
+        while (digits[j] <= digits[i]) {
+            j--;
+        }
+        
+        char temp = digits[i];
+        digits[i] = digits[j];
+        digits[j] = temp;
+        
+        Arrays.sort(digits, i + 1, digits.length);
+        
+        int nextNumber = Integer.parseInt(new String(digits));
+        
+        return nextNumber;
+    }
+}
